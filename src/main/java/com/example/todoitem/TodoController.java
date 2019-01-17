@@ -15,7 +15,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class TodoController {
 
     @Autowired
-    TodoRepository repository;
+    private TodoRepository repository;
 
     @RequestMapping("/todoitem")
     public ResponseEntity<TodoItem> create(@RequestBody TodoItem item) {
@@ -30,9 +30,9 @@ public class TodoController {
 
     @RequestMapping(value = "/todo/{id}", method = GET)
     @ResponseBody
-    public ResponseEntity<TodoItem> getFoosBySimplePathWithPathVariable(
+    public ResponseEntity<TodoItem> findToDoItemByID(
             @PathVariable("id") long id) {
-        Optional<TodoItem> x = repository.findById(id);
-       return new ResponseEntity<TodoItem>(x.get(),HttpStatus.OK);
+        Optional<TodoItem> optionalTodoItem = repository.findById(id);
+        return optionalTodoItem.map(todoItem -> new ResponseEntity<>(todoItem, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }
