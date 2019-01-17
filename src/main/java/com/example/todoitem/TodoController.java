@@ -1,8 +1,7 @@
 package com.example.todoitem;
 
-import com.example.demo.TodoRepository;
+import com.example.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,17 +18,12 @@ public class TodoController {
     private TodoRepository repository;
 
     @RequestMapping(value="/todoitem", method=POST)
-    public ResponseEntity<TodoItem> create(@RequestBody TodoItem item) {
+    public ResponseEntity<TodoItem> createToDoItem(@RequestBody TodoItem item) {
         System.out.println("Created to do item "+item.getId());
         return ResponseEntity.ok(item);
     }
 
-    @RequestMapping("/test")
-    public TodoItem get() {
-        return new TodoItem(12,"aaaaa",-1L);
-    }
-
-    @RequestMapping(value = "/todo/{id}", method = GET)
+    @RequestMapping(value = "/todoitem/{id}", method = GET)
     @ResponseBody
     public ResponseEntity<TodoItem> findToDoItemByID(
             @PathVariable("id") long id) {

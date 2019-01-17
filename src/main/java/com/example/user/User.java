@@ -1,62 +1,50 @@
 package com.example.user;
 
 import com.example.todoitem.TodoItem;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.List;
 
-@Entity
+
 public class User {
-    @Id
-    private Long id;
-    private String name;
-    private String address;
-    @Column
+    private String firstName;
+    private String lastName;
+    private String loginName;
+    private String password;
     @ElementCollection
     private List<TodoItem> listOfItems;
 
     protected User() {}
 
-    public User(@JsonProperty("id")Long id,@JsonProperty("name") String name, @JsonProperty("address")String address, @JsonProperty("listItems")List<TodoItem> listOfItems) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.listOfItems = listOfItems;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public Long getId() {
-        return id;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getName() {
-        return name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getLoginName() {
+        return loginName;
     }
 
-    public String getAddress() {
-        return address;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public String getPassword() {
+        return password;
     }
 
-    public List<TodoItem> getListOfItems() {
-        return listOfItems;
-    }
-
-    public void setListOfItems(List<TodoItem> listOfItems) {
-        this.listOfItems = listOfItems;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

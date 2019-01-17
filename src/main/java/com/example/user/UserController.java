@@ -1,14 +1,12 @@
 package com.example.user;
 
-import com.example.demo.TodoRepository;
-import com.example.demo.UserRepository;
-import com.example.todoitem.TodoItem;
+import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -22,7 +20,7 @@ public class UserController {
     @RequestMapping(value = "/user", method = POST)
     @ResponseBody
     public ResponseEntity<User> createUser(@RequestBody User user) {
-        System.out.println("Created user with name " + user.getName());
+        System.out.println("Created user with name " + user.getFirstName());
         userRepository.save(user);
         return ResponseEntity.ok(user);
     }
