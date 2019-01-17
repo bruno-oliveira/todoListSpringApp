@@ -1,12 +1,11 @@
 package com.example.todoitem;
 
+import com.example.user.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.NonNull;
 import lombok.Value;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -14,20 +13,29 @@ public class TodoItem {
     @Id
     private long id;
     private String taskContent;
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_USER"))
+    @NonNull
+    private long authorId;
+
 
     protected TodoItem(){}
 
-    public TodoItem(@JsonProperty("id")long id, @JsonProperty("taskContent")String taskContent) {
+    public TodoItem(@JsonProperty("id")long id, @JsonProperty("taskContent")String taskContent, @JsonProperty("author")long authorId) {
         this.id = id;
         this.taskContent = taskContent;
+        this.authorId = authorId;
     }
 
-    public long getId() {
+     long getId() {
         return id;
     }
 
     public String getTaskContent() {
         return taskContent;
+    }
+
+    public long getAuthorId() {
+        return authorId;
     }
 
     @Override

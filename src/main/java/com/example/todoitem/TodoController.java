@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
 public class TodoController {
@@ -17,7 +18,7 @@ public class TodoController {
     @Autowired
     private TodoRepository repository;
 
-    @RequestMapping("/todoitem")
+    @RequestMapping(value="/todoitem", method=POST)
     public ResponseEntity<TodoItem> create(@RequestBody TodoItem item) {
         System.out.println("Created to do item "+item.getId());
         return ResponseEntity.ok(item);
@@ -25,7 +26,7 @@ public class TodoController {
 
     @RequestMapping("/test")
     public TodoItem get() {
-        return new TodoItem(12,"aaaaa");
+        return new TodoItem(12,"aaaaa",-1L);
     }
 
     @RequestMapping(value = "/todo/{id}", method = GET)
