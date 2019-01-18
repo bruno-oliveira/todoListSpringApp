@@ -14,9 +14,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @RestController
 public class TodoController {
 
-    @Autowired
-    private TodoRepository repository;
-
     @RequestMapping(value="/todoitem", method=POST)
     public ResponseEntity<TodoItem> createToDoItem(@RequestBody TodoItem item) {
         System.out.println("Created to do item "+item.getId());
@@ -27,7 +24,7 @@ public class TodoController {
     @ResponseBody
     public ResponseEntity<TodoItem> findToDoItemByID(
             @PathVariable("id") long id) {
-        Optional<TodoItem> optionalTodoItem = repository.findById(id);
+        Optional<TodoItem> optionalTodoItem = Optional.of(new TodoItem(23L,"aa",9L));
         return optionalTodoItem.map(todoItem -> new ResponseEntity<>(todoItem, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

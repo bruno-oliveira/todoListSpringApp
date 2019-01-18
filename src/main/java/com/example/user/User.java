@@ -7,14 +7,28 @@ import java.util.List;
 
 
 public class User {
+    private long id;
     private String firstName;
     private String lastName;
-    private String loginName;
+    private String username;
     private String password;
     @ElementCollection
     private List<TodoItem> listOfItems;
 
-    protected User() {}
+    public User(String firstName, String lastName, String username, String password){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+    }
+
+    public void setId(long id){
+        this.id=id;
+    }
+
+    public long getId(){
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -32,12 +46,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getLoginName() {
-        return loginName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
