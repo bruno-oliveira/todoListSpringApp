@@ -1,16 +1,15 @@
 package com.example.user;
 
-import com.example.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
-import java.util.Optional;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 public class UserController {
@@ -30,16 +29,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/logout", method = POST)
-    public Long logout(@RequestBody User user) {
-        System.out.println("Logging out user with first name " + user.getFirstName());
-        return user.getId();
-    }
-
-    @RequestMapping(value = "/user/{id}", method = GET)
-    public ResponseEntity<User> findUserByID(
-            @PathVariable("id") long id) {
-        Optional<User> optionalUser = Optional.empty();
-        return optionalUser.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity logout() {
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/{id}/profile", method = GET)
@@ -47,6 +38,19 @@ public class UserController {
             @PathVariable("id") long id) {
         UserProfile userProfile = new UserProfile("brunoOliveira","olivbruno8@gmail.com","Bruno","Oliveira", Collections.emptyList());
         return userProfile;
+    }
+
+    @RequestMapping(value = "/user/{id}/profile", method = PUT)
+    public UserProfile editUserProfile(
+            @PathVariable("id") long id, @RequestBody UserProfile userProfile) {
+        return userProfile;
+    }
+
+    @RequestMapping(value = "/user/{id}", method = DELETE)
+    public ResponseEntity deleteUser(
+            @PathVariable("id") long id) {
+        System.out.println("Delete user with ID " + id);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 
