@@ -15,7 +15,7 @@ public class TodoItem {
         this.authorId = authorId;
     }
 
-     long getId() {
+    public long getId() {
         return id;
     }
 
