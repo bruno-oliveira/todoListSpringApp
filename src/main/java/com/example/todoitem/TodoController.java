@@ -48,7 +48,7 @@ public class TodoController {
             method = GET)
     public List<TodoItem> getTodoListOfUser(
             @RequestParam("authorId") long authorId) {
-        return todoService.getTodoItemListByUserId(authorId);
+        return todoService.getTodoItemListByAuthorId(authorId);
     }
 
     @RequestMapping(value = "/todo/{id}", method = DELETE)

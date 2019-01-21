@@ -36,7 +36,7 @@ public class TodoService {
         return todoItemMap.get(id);
     }
 
-    public List<TodoItem> getTodoItemListByUserId(Long authorId) {
+    public List<TodoItem> getTodoItemListByAuthorId(Long authorId) {
         List<TodoItem> todoItemsByAuthor = todoItemMap.entrySet().stream().filter(e -> e.getValue().getAuthorId() == authorId).map(Map.Entry::getValue).collect(Collectors.toList());
         return todoItemsByAuthor;
     }
