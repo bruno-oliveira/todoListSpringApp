@@ -23,6 +23,10 @@ public class TodoItem {
         return taskContent;
     }
 
+    public void setTaskContent(String content) {
+        this.taskContent = content;
+    }
+
     public long getAuthorId() {
         return authorId;
     }
