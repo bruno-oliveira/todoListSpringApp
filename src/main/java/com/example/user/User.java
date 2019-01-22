@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public class User {
-    private long id;
+    private long userId;
     private String firstName;
     private String lastName;
     private String username;
@@ -15,19 +15,20 @@ public class User {
     @ElementCollection
     private List<TodoItem> listOfItems;
 
-    public User(String firstName, String lastName, String username, String password){
+    public User(long userId, String firstName, String lastName, String username, String password) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
     }
 
-    public void setId(long id){
-        this.id=id;
+    public long getId(){
+        return userId;
     }
 
-    public long getId(){
-        return id;
+    public void setId(long id) {
+        this.userId = id;
     }
 
     public String getFirstName() {
